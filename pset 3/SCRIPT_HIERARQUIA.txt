@@ -1,0 +1,10 @@
+WITH recursive PART AS(select c.nome
+FROM classificacao  c
+WHERE codigo_pai is null
+UNION ALL
+SELECT c.nome
+FROM classificacao c
+INNER JOIN PART ON codigo = codigo_pai
+WHERE codigo_pai is not null)
+SELECT codigo, codigo_pai, nome
+FROM classificacao c ;
